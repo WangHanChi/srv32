@@ -2,7 +2,7 @@
 include ../common/Makefile.common
 
 EXE      = .elf
-SRC      = leetcode.c
+SRC      = leetcode.s
 CFLAGS  += -L../common
 LDFLAGS += -T ../common/default.ld
 TARGET   = leetcode
