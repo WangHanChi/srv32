@@ -25,7 +25,22 @@ main:
 
     la  a0, result0     # printf result0
     call printf
-    la  s0, test3       # go test0
+    la  s0, test0       # go test0
+    jal ra, numDecodings
+
+    la  a0, result1     # printf result1
+    call printf
+    la  s0, test1       # go test1
+    jal ra, numDecodings
+
+    la  a0, result2     # printf result2
+    call printf
+    la  s0, test2       # go test2
+    jal ra, numDecodings
+
+    la  a0, result3     # printf result3
+    call printf
+    la  s0, test3       # go test3
     jal ra, numDecodings
 
 finally:
@@ -36,6 +51,8 @@ finally:
 
 
 numDecodings:
+    addi sp, sp, -4
+    sw ra, 0(sp)
     li  t0, 1           # res[0] = 1;
     li  t1, 0           # res[1] = 0;
     lb  t2, 0(s0)       # get (*s)
@@ -81,7 +98,9 @@ return_value:
     la a0, nextline     # load '\n' to a0
     call printf         # use printf system call
 
-    j   finally
+    lw ra, 0(sp)
+    addi sp, sp, 4
+    ret
 
 return_0:
     la  a0, iformat     # set output format
@@ -91,4 +110,6 @@ return_0:
     la a0, nextline     # load ' \n' to a0
     call printf         # use printf system call
 
-    j   finally
+    lw ra, 0(sp)
+    addi sp, sp, 4
+    ret
