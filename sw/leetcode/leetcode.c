@@ -2,7 +2,7 @@
 
 int numDecodings(char *s)
 {
-    int res[2] = {1, 0};
+    volatile int res[2] = {1, 0};
     int previous = (*s) - '0';
     if (previous == 0)
     {
@@ -38,10 +38,10 @@ int numDecodings(char *s)
 
 int main(int argc, char *argv[])
 {
-    char test0[3] = "12";
-    char test1[4] = "226";
-    char test2[3] = "06";
-    char test3[6] = "11106";
+    char test0[23] = "1111111111111111111111";
+    char test1[23] = "2222222222222222222222";
+    char test2[23] = "1231231231231231231231";
+    char test3[23] = "1110612312111221232132";
 
     printf("The result of test0 is %d\n", numDecodings(test0));
     printf("The result of test1 is %d\n", numDecodings(test1));
